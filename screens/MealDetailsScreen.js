@@ -17,15 +17,15 @@ function MealDetailsScreen({ route, navigation }) {
   const mealIsFavorite = favoriteMealIds.includes(mealId);
   function changeFavoriteStatusHandler() {
     if (mealIsFavorite) {
-      dispatch(removeFavorite(mealId));
+      dispatch(removeFavorite({ id: mealId }));
     } else {
-      dispatch(addFavorite(mealId));
+      dispatch(addFavorite({ id: mealId }));
     }
   }
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return <IconButton  onPress={changeFavoriteStatusHandler} icon={ mealIsFavorite ? 'star' : 'star-outline'} color={'white'} />
+        return <IconButton onPress={changeFavoriteStatusHandler} icon={mealIsFavorite ? 'star' : 'star-outline'} color={'white'} />
       }
     });
   }, [mealIsFavorite, navigation]);
